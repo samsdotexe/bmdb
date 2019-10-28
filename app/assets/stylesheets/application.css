@@ -18,9 +18,16 @@
 
  .top-bar {
    background-color: #8A0808;
+   margin-bottom: 20px;
  }
 
  body {
    background-color: #1C1C1C;
    color: white;
  }
+
+.index-movie-poster {
+  width: 270px;
+  height: 400px;
+  margin: 20px;
+}

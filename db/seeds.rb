@@ -6,4 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Movie.create(title: "The Lighthouse", plot: "The hypnotic and hallucinatory tale of two lighthouse keepers on a remote and mysterious New England island in the 1890s.", poster: "https://m.media-amazon.com/images/M/MV5BZmE0MGJhNmYtOWNjYi00Njc5LWE2YjEtMWMxZTVmODUwMmMxXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg")
+Movie.create(title: "Once Upon a Time... in Hollywood", plot: "A faded television actor and his stunt double strive to achieve fame and success in the film industry during the final years of Hollywood's Golden Age in 1969 Los Angeles.", poster: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn2-www.comingsoon.net%2Fassets%2Fuploads%2Fgallery%2Fonce-upon-a-time-in-hollywood%2Fd18urluvyaabicl.jpg&f=1&nofb=1")

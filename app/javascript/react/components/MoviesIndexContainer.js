@@ -22,14 +22,21 @@ const MoviesIndexContainer = (props) => {
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
 
-  // useEffect(() => {
-  //   setMovies("meeeeee")
-  // }, [])
-
-  console.log(movies)
+  const movieTiles = movies.map(movie => {
+    return (
+      <MovieTile
+        key={movie.id}
+        id={movie.id}
+        name={movie.title}
+        plot={movie.plot}
+        poster={movie.poster}
+      />
+    )
+  })
 
   return (
     <div>
+      {movieTiles}
     </div>
   )
 }
