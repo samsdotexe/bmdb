@@ -6,4 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Movie.create(title: "Once Upon a Time... in Hollywood", plot: "A faded television actor and his stunt double strive to achieve fame and success in the film industry during the final years of Hollywood's Golden Age in 1969 Los Angeles.", poster: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn2-www.comingsoon.net%2Fassets%2Fuploads%2Fgallery%2Fonce-upon-a-time-in-hollywood%2Fd18urluvyaabicl.jpg&f=1&nofb=1")
+Movie.create(title: "Star Trek: The Motion Picture", plot: "When an alien spacecraft of enormous power is spotted approaching Earth, Admiral James T. Kirk resumes command of the overhauled USS Enterprise in order to intercept it.", poster: "https://66.media.tumblr.com/5bbb5072fca6553a8605a77f5e304b89/tumblr_inline_oww3x2coCm1uy91wy_1280.jpg")
+Movie.create(title: "Baby Driver", plot: "After being coerced into working for a crime boss, a young getaway driver finds himself taking part in a heist doomed to fail.", poster: "https://filmandtv101.files.wordpress.com/2017/07/img_3674.jpg")
+Movie.create(title: "Eraserhead", plot: "Henry Spencer tries to survive his industrial environment, his angry girlfriend, and the unbearable screams of his newly born mutant child.", poster: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fmoviemarker.co.uk%2Fwp-content%2Fuploads%2F2015%2F01%2Feraserheaderqweq.jpg&f=1&nofb=1")

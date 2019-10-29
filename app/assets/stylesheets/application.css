@@ -18,7 +18,12 @@
 
  .top-bar {
    background-color: #8A0808;
-   margin-bottom: 20px;
+ }
+
+ .movie-tiles-container {
+   display: inline-grid;
+   grid-template-columns: repeat(5, 1fr);
+   padding: 20px;
  }
 
  body {
@@ -30,4 +35,14 @@
   width: 135px;
   height: 200px;
   margin: 20px;
+}
+
+.link {
+  color: white;
+  transition: 0.3s;
+}
+
+.link:hover {
+  color: #1C1C1C;
+  transition: 0.3s;
 }

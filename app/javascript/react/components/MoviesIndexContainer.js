@@ -35,9 +35,11 @@ const MoviesIndexContainer = (props) => {
   })
 
   return (
-    <div>
-      {movieTiles}
-    </div>
+    <center>
+      <div className="movie-tiles-container">
+        {movieTiles}
+      </div>
+    </center>
   )
 }
 
