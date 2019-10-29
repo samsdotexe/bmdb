@@ -1,0 +1,65 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require foundation_and_overrides
+
+ */
+
+ .top-bar {
+   background-color: #8A0808;
+ }
+
+ body {
+   background-color: #1C1C1C;
+   color: white;
+ }
+
+ .link {
+   color: white;
+   transition: 0.2s;
+ }
+
+ .link:hover {
+   color: #1C1C1C;
+   transition: 0.2s;
+ }
+
+ /* INDEX PAGE */
+
+ .movie-tiles-container {
+   display: inline-grid;
+   grid-template-columns: repeat(6, 1fr);
+   column-gap: 20px;
+   row-gap: 50px;
+   padding: 50px;
+ }
+
+.index-movie-poster {
+  width: 135px;
+  height: 200px;
+  transition: 0.2s;
+}
+
+.index-movie-poster:hover {
+  filter: brightness(50%);
+  transform: scale(0.95);
+  transition: 0.2s;
+}
+
+/* SHOW PAGE */
+
+.show-movie-poster {
+  width: 270px;
+  height: 400px;
+}
