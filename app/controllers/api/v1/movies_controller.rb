@@ -23,19 +23,14 @@ class Api::V1::MoviesController < ApplicationController
       http.request(req)
     }
 
-    # render json: res.body
+    response = JSON.parse(res.body)
 
-    # binding.pry
-    # if @new_movie.save
-    #   render json: {body: body}
-    # else
-    #   render json: @new_movie.errors
-    # end
-  end
+    @new_movie = Movie.new(title: response["Title"])
 
-  private
-
-  def movie_params
-    params.require("body")
+    if @new_movie.save
+      render :root
+    else
+      render json: @new_movie.errors
+    end
   end
 end
