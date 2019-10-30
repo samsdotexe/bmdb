@@ -36,7 +36,7 @@ const MoviesIndexContainer = (props) => {
 
   return (
     <center>
-    <a href="/movies/new">new</a>
+      <h1><a href="/movies/new">new</a></h1>
       <div className="movie-tiles-container">
         {movieTiles}
       </div>

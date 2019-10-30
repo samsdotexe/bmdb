@@ -1,4 +1,8 @@
 class Api::V1::MoviesController < ApplicationController
+  require "net/http"
+
+  protect_from_forgery except: :json
+
   def index
     render json: Movie.all
   end
@@ -13,14 +17,25 @@ class Api::V1::MoviesController < ApplicationController
   end
 
   def create
-    @new_movie = Movie.new(movie_params)
-  #   fruit = Fruit.find(params[:fruit_id])
-  #   new_review.fruit = fruit
-  #   new_review.user = User.first
-  #   if new_review.save
-  #     render json: {fruit:fruit, reviews:fruit.reviews}
-  #   else
-  #     render json: new_review.errors
-  #   end
+    url = URI.parse("http://www.omdbapi.com/?apikey=c8c5e403&t=#{params["body"]}")
+    req = Net::HTTP::Get.new(url.to_s)
+    res = Net::HTTP.start(url.host, url.port) {|http|
+      http.request(req)
+    }
+
+    # render json: res.body
+
+    # binding.pry
+    # if @new_movie.save
+    #   render json: {body: body}
+    # else
+    #   render json: @new_movie.errors
+    # end
+  end
+
+  private
+
+  def movie_params
+    params.require("body")
   end
 end

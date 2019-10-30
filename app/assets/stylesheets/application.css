@@ -16,34 +16,34 @@
 
  */
 
- .top-bar {
-   background-color: #8A0808;
- }
+body {
+ background-color: #1C1C1C;
+ color: white;
+}
 
- body {
-   background-color: #1C1C1C;
-   color: white;
- }
+.top-bar {
+  background-color: #8A0808;
+}
 
- .link {
-   color: white;
-   transition: 0.2s;
- }
+.link {
+  color: white;
+  transition: 0.2s;
+}
 
- .link:hover {
-   color: #1C1C1C;
-   transition: 0.2s;
- }
+.link:hover {
+  color: #C0C0C0;
+  transition: 0.2s;
+}
 
- /* INDEX PAGE */
+/* INDEX PAGE */
 
- .movie-tiles-container {
-   display: inline-grid;
-   grid-template-columns: repeat(6, 1fr);
-   column-gap: 20px;
-   row-gap: 50px;
-   padding: 50px;
- }
+.movie-tiles-container {
+  display: inline-grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 20px;
+  row-gap: 50px;
+  padding: 50px;
+}
 
 .index-movie-poster {
   width: 135px;
@@ -60,6 +60,6 @@
 /* SHOW PAGE */
 
 .show-movie-poster {
-  width: 270px;
-  height: 400px;
+ width: 270px;
+ height: 400px;
 }

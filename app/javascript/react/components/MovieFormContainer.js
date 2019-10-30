@@ -1,9 +1,42 @@
 import React, { useState, useEffect } from "react"
 
 const MovieFormContainer = (props) => {
+  const [movie, setMovie] = useState("")
+
+  const changeForm = (event) => {
+    event.preventDefault()
+    setMovie({
+      ...movie, [event.currentTarget.id]: event.currentTarget.value
+    })
+  }
+
+  const formSubmit = () => {
+    event.preventDefault()
+
+    fetch("/api/v1/movies", {
+      method: "POST",
+      body: JSON.stringify(movie),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      }
+    })
+  }
+
   return (
     <div>
-    <h1>memes</h1>
+      <form onSubmit={formSubmit}>
+        <label htmlFor="rating">
+          <h3>form</h3>
+        </label>
+        <textarea
+          name="body"
+          id="body"
+          type="text"
+          onChange={changeForm}
+        />
+        <input className="button" type="submit" value="Submit" />
+      </form>
     </div>
   )
 }
