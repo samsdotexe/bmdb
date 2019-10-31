@@ -19,6 +19,11 @@
 body {
  background-color: #1C1C1C;
  color: white;
+ font-family: "Trebuchet MS";
+}
+
+label {
+  color: white;
 }
 
 .top-bar {
@@ -51,24 +56,24 @@ body {
   margin-top: 2%;
 }
 
-.movie-tiles-container {
-  display: inline-grid;
-  grid-template-columns: repeat(6, 1fr);
-  column-gap: 20px;
-  row-gap: 50px;
-  padding: 50px;
-}
-
 .index-movie-poster {
   width: 135px;
   height: 200px;
-  transition: 0.2s;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  transition: 0.1s;
 }
 
 .index-movie-poster:hover {
   filter: brightness(50%);
   transform: scale(0.95);
-  transition: 0.2s;
+  transition: 0.1s;
+}
+
+.movie-tile {
+  margin: 20px;
 }
 
 /* SHOW PAGE */

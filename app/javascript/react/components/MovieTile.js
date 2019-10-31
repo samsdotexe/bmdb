@@ -4,7 +4,7 @@ const MovieTile = (props) => {
   return (
     <div>
       <a href={`/movies/${props.id}`}>
-        <img src={props.poster} alt="{props.name} poster" className="index-movie-poster"/>
+        <img src={props.poster} alt={props.title} className="index-movie-poster"/>
       </a>
     </div>
   )

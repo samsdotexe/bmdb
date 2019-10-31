@@ -17,8 +17,9 @@ class Api::V1::MoviesController < ApplicationController
   end
 
   def create
-    @movie = params["movie"]["body"]
-    @rating = params["rating"]
+    @movie = params["body"]
+    # @movie = params["movie"]["body"]
+    # @rating = params["rating"]
 
     url = URI.parse("http://www.omdbapi.com/?apikey=c8c5e403&t=#{@movie}")
     req = Net::HTTP::Get.new(url.to_s)
@@ -27,6 +28,12 @@ class Api::V1::MoviesController < ApplicationController
     }
 
     response = JSON.parse(res.body)
+
+    if response["Poster"] != "N/A"
+      @poster = response["Poster"]
+    else
+      @poster = "https://imgur.com/EBVGtkB"
+    end
 
     @new_movie = Movie.new({
       title: response["Title"],
@@ -37,9 +44,9 @@ class Api::V1::MoviesController < ApplicationController
       genre: response["Genre"],
       director: response["Director"],
       plot: response["Plot"],
-      poster: response["Poster"],
-      imdb_rating: response["Ratings"][0]["Value"],
-      user_rating: @rating
+      poster: @poster,
+      imdb_rating: response["Ratings"][0]["Value"]
+      # user_rating: @rating
       }
     )
 
