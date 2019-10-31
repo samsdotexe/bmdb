@@ -27,20 +27,22 @@ const MoviesIndexContainer = (props) => {
       <MovieTile
         key={movie.id}
         id={movie.id}
-        name={movie.title}
-        plot={movie.plot}
         poster={movie.poster}
       />
     )
   })
 
   return (
-    <center>
-      <h1><a href="/movies/new">new</a></h1>
+    <div className="index-panel">
+      <center>
+        <h1>The Bad Movie Database</h1>
+        <p>A place for cataloging and ranking bad movies.</p>
+        <a href="/movies/new">Submit a Movie</a>
+      </center>
       <div className="movie-tiles-container">
         {movieTiles}
       </div>
-    </center>
+    </div>
   )
 }
 

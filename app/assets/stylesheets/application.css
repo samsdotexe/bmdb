@@ -23,27 +23,33 @@ body {
 
 .top-bar {
   background-color: #8A0808;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .link {
   color: white;
-  transition: 0.2s;
 }
 
 .link:hover {
   color: #C0C0C0;
-  transition: 0.2s;
 }
 
 .panel {
   background-color: #313131;
-  margin-right: 10%;
   margin-left: 10%;
+  margin-right: 10%;
   margin-top: 2%;
   padding: 20px;
 }
 
 /* INDEX PAGE */
+
+.index-panel {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 2%;
+}
 
 .movie-tiles-container {
   display: inline-grid;
@@ -70,4 +76,8 @@ body {
 .show-movie-poster {
  width: 270px;
  height: 400px;
+}
+
+.show-page-text {
+  padding-left: 20px;
 }

@@ -17,7 +17,10 @@ class Api::V1::MoviesController < ApplicationController
   end
 
   def create
-    url = URI.parse("http://www.omdbapi.com/?apikey=c8c5e403&t=#{params["body"]}")
+    @movie = params["movie"]["body"]
+    @rating = params["rating"]
+
+    url = URI.parse("http://www.omdbapi.com/?apikey=c8c5e403&t=#{@movie}")
     req = Net::HTTP::Get.new(url.to_s)
     res = Net::HTTP.start(url.host, url.port) {|http|
       http.request(req)
@@ -35,7 +38,8 @@ class Api::V1::MoviesController < ApplicationController
       director: response["Director"],
       plot: response["Plot"],
       poster: response["Poster"],
-      imdb_rating: response["Ratings"][0]["Value"]
+      imdb_rating: response["Ratings"][0]["Value"],
+      user_rating: @rating
       }
     )
 

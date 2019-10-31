@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 
 const MovieFormContainer = (props) => {
   const [movie, setMovie] = useState("")
+  const [rating, setRating] = useState(null)
 
   const changeForm = (event) => {
     event.preventDefault()
@@ -10,34 +11,33 @@ const MovieFormContainer = (props) => {
     })
   }
 
+  const changeRating = (event) => {
+    setRating(event.currentTarget.value)
+    console.log(rating)
+  }
+
   const formSubmit = () => {
     event.preventDefault()
 
+    const movieData = { movie, rating }
+
     fetch("/api/v1/movies", {
       method: "POST",
-      body: JSON.stringify(movie),
+      body: JSON.stringify(movieData),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       }
     })
-    // .then(response => {
-    //   if (!response.ok) {
-    //     throw(Error("success"))
-    //   }
-    // })
-    // .catch((error) => {
-    //   console.log(error)
-    // })
     .then(console.log("You're about to see an error. Don't worry about it."))
   }
 
   return (
     <div className="panel">
       <form onSubmit={formSubmit}>
-        <h2>Submit Movie</h2>
+        <h3>Submit Movie</h3>
 
-        <p>Title</p>
+        <p>Title:</p>
         <textarea
           name="body"
           id="body"
@@ -45,13 +45,13 @@ const MovieFormContainer = (props) => {
           onChange={changeForm}
         />
 
-        <p>Rating</p>
+        <p>Enjoyment rating:</p>
         <p>
-          <input type="radio" name="user-rating" value="one"/>1
-          <input type="radio" name="user-rating" value="two"/>2
-          <input type="radio" name="user-rating" value="three"/>3
-          <input type="radio" name="user-rating" value="four"/>4
-          <input type="radio" name="user-rating" value="five"/>5
+          <input type="radio" name="user-rating" value={1} onClick={changeRating}/>&nbsp;&nbsp;1&nbsp;&nbsp;
+          <input type="radio" name="user-rating" value={2} onClick={changeRating}/>&nbsp;&nbsp;2&nbsp;&nbsp;
+          <input type="radio" name="user-rating" value={3} onClick={changeRating}/>&nbsp;&nbsp;3&nbsp;&nbsp;
+          <input type="radio" name="user-rating" value={4} onClick={changeRating}/>&nbsp;&nbsp;4&nbsp;&nbsp;
+          <input type="radio" name="user-rating" value={5} onClick={changeRating}/>&nbsp;&nbsp;5
         </p>
 
         <input className="button" type="submit" value="Submit" />
