@@ -17,6 +17,16 @@ ActiveRecord::Schema.define(version: 2019_10_28_180336) do
 
   create_table "movies", force: :cascade do |t|
     t.string "title", null: false
+    t.string "year"
+    t.string "rated"
+    t.string "released"
+    t.string "runtime"
+    t.string "genre"
+    t.string "director"
+    t.string "plot"
+    t.string "poster"
+    t.integer "imdb_rating"
+    t.integer "user_rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

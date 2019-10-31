@@ -21,6 +21,15 @@ const MovieFormContainer = (props) => {
         "Content-Type": "application/json",
       }
     })
+    // .then(response => {
+    //   if (!response.ok) {
+    //     throw(Error("success"))
+    //   }
+    // })
+    // .catch((error) => {
+    //   console.log(error)
+    // })
+    .then(console.log("You're about to see an error. Don't worry about it."))
   }
 
   return (

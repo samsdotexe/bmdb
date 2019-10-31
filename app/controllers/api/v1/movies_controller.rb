@@ -25,7 +25,18 @@ class Api::V1::MoviesController < ApplicationController
 
     response = JSON.parse(res.body)
 
-    @new_movie = Movie.new(title: response["Title"])
+    @new_movie = Movie.new({
+      title: response["Title"],
+      year: response["Year"],
+      rated: response["Rated"],
+      released: response["Released"],
+      runtime: response["Runtime"],
+      genre: response["Genre"],
+      director: response["Director"],
+      plot: response["Plot"],
+      poster: response["Poster"],
+      }
+    )
 
     if @new_movie.save
       render :root
