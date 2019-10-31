@@ -27,7 +27,7 @@ const MovieShowContainer = (props) => {
     },[])
 
   return (
-    <div>
+    <div className="panel">
       <MovieShow
         title={movie.title}
         plot={movie.plot}

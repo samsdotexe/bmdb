@@ -35,6 +35,14 @@ body {
   transition: 0.2s;
 }
 
+.panel {
+  background-color: #313131;
+  margin-right: 10%;
+  margin-left: 10%;
+  margin-top: 2%;
+  padding: 20px;
+}
+
 /* INDEX PAGE */
 
 .movie-tiles-container {

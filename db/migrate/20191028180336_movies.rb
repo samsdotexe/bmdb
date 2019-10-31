@@ -10,8 +10,9 @@ class Movies < ActiveRecord::Migration[5.2]
       t.string :director
       t.string :plot
       t.string :poster
-      t.integer :imdb_rating
+      t.float :imdb_rating
       t.integer :user_rating
+      t.float :average_rating
 
       t.timestamps
     end

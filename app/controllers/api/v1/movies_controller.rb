@@ -35,6 +35,7 @@ class Api::V1::MoviesController < ApplicationController
       director: response["Director"],
       plot: response["Plot"],
       poster: response["Poster"],
+      imdb_rating: response["Ratings"][0]["Value"]
       }
     )
 

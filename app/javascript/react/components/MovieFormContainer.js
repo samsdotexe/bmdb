@@ -33,17 +33,27 @@ const MovieFormContainer = (props) => {
   }
 
   return (
-    <div>
+    <div className="panel">
       <form onSubmit={formSubmit}>
-        <label htmlFor="rating">
-          <h3>form</h3>
-        </label>
+        <h2>Submit Movie</h2>
+
+        <p>Title</p>
         <textarea
           name="body"
           id="body"
           type="text"
           onChange={changeForm}
         />
+
+        <p>Rating</p>
+        <p>
+          <input type="radio" name="user-rating" value="one"/>1
+          <input type="radio" name="user-rating" value="two"/>2
+          <input type="radio" name="user-rating" value="three"/>3
+          <input type="radio" name="user-rating" value="four"/>4
+          <input type="radio" name="user-rating" value="five"/>5
+        </p>
+
         <input className="button" type="submit" value="Submit" />
       </form>
     </div>
