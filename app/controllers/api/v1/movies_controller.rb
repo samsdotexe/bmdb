@@ -1,7 +1,7 @@
 class Api::V1::MoviesController < ApplicationController
   require "net/http"
 
-  protect_from_forgery except: :json
+  protect_from_forgery unless: -> { request.format.json? }
 
   def index
     render json: Movie.all
@@ -18,15 +18,12 @@ class Api::V1::MoviesController < ApplicationController
 
   def create
     @movie = params["movie"]["body"]
-    # @movie = params["movie"]["body"]
-    # @rating = params["rating"]
 
     url = URI.parse("http://www.omdbapi.com/?apikey=c8c5e403&t=#{@movie}")
     req = Net::HTTP::Get.new(url.to_s)
     res = Net::HTTP.start(url.host, url.port) {|http|
       http.request(req)
     }
-
 
     response = JSON.parse(res.body)
 
@@ -40,20 +37,26 @@ class Api::V1::MoviesController < ApplicationController
       director: response["Director"],
       plot: response["Plot"],
       poster: response["Poster"],
-      # imdb_rating: response["Ratings"][0]["Value"]
-      # user_rating: @rating
       }
     )
+
+    @new_review = Review.new({
+      rating: params["rating"],
+      review: params["review"]["body"],
+      user: current_user,
+      movie: @new_movie
+      }
+    )
+
+    @new_review.user = current_user
+
+    binding.pry
 
     if @new_movie.save
       render json: {id: @new_movie.id}
-      # redirect_to :root
 
-      @new_review = Review.create({
-        rating: params["rating"],
-        review: params["review"]["body"]
-      }
-    )
+      @new_review.save
+
     else
       # render json: @new_movie.errors
       flash[:alert] = "Movie not found"

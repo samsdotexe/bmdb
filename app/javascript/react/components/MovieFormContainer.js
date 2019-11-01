@@ -10,12 +10,10 @@ const MovieFormContainer = (props) => {
     setMovie({
       ...movie, [event.currentTarget.id]: event.currentTarget.value
     })
-    console.log(movie)
   }
 
   const changeRating = (event) => {
     setRating(event.currentTarget.value)
-    console.log(rating)
   }
 
   const changeReview = (event) => {
@@ -23,7 +21,6 @@ const MovieFormContainer = (props) => {
     setReview({
       ...review, [event.currentTarget.id]: event.currentTarget.value
     })
-    console.log(review)
   }
 
   const formSubmit = () => {
@@ -31,13 +28,14 @@ const MovieFormContainer = (props) => {
 
     const movieData = { movie, rating, review }
 
-    fetch("/api/v1/movies", {
+    fetch("/api/v1/movies.json", {
+      credentials: "same-origin",
       method: "POST",
       body: JSON.stringify(movieData),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-      },
+      }
     })
     .then(response => {
       console.log(response)
