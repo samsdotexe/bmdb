@@ -17,7 +17,7 @@ class Api::V1::MoviesController < ApplicationController
   end
 
   def create
-    @movie = params["body"]
+    @movie = params["movie"]["body"]
     # @movie = params["movie"]["body"]
     # @rating = params["rating"]
 
@@ -27,13 +27,8 @@ class Api::V1::MoviesController < ApplicationController
       http.request(req)
     }
 
-    response = JSON.parse(res.body)
 
-    if response["Poster"] != "N/A"
-      @poster = response["Poster"]
-    else
-      @poster = "https://imgur.com/EBVGtkB"
-    end
+    response = JSON.parse(res.body)
 
     @new_movie = Movie.new({
       title: response["Title"],
@@ -44,16 +39,24 @@ class Api::V1::MoviesController < ApplicationController
       genre: response["Genre"],
       director: response["Director"],
       plot: response["Plot"],
-      poster: @poster,
-      imdb_rating: response["Ratings"][0]["Value"]
+      poster: response["Poster"],
+      # imdb_rating: response["Ratings"][0]["Value"]
       # user_rating: @rating
       }
     )
 
     if @new_movie.save
-      render :root
+      render json: {id: @new_movie.id}
+      # redirect_to :root
+
+      @new_review = Review.create({
+        rating: params["rating"],
+        review: params["review"]["body"]
+      }
+    )
     else
-      render json: @new_movie.errors
+      # render json: @new_movie.errors
+      flash[:alert] = "Movie not found"
     end
   end
 end
