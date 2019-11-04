@@ -37,20 +37,17 @@ class Api::V1::MoviesController < ApplicationController
       director: response["Director"],
       plot: response["Plot"],
       poster: response["Poster"],
-      }
-    )
+    })
 
     @new_review = Review.new({
       rating: params["rating"],
       review: params["review"]["body"],
-      user: current_user,
-      movie: @new_movie
+      user: current_user
+      # movie: @new_movie
       }
     )
 
     @new_review.user = current_user
-
-    binding.pry
 
     if @new_movie.save
       render json: {id: @new_movie.id}

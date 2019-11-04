@@ -38,10 +38,9 @@ const MovieShowContainer = (props) => {
         director={movie.director}
         plot={movie.plot}
         poster={movie.poster}
-        imdb_rating={movie.imdb_rating}
         user_rating={movie.user_rating}
         average_rating={movie.average_rating}
-
+        reviews={movie.reviews}
       />
     </div>
   )
