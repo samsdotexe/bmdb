@@ -39,24 +39,8 @@ class Api::V1::MoviesController < ApplicationController
       poster: response["Poster"],
     })
 
-    @new_review = Review.new({
-      rating: params["rating"],
-      review: params["review"]["body"],
-      user: current_user
-      # movie: @new_movie
-      }
-    )
-
-    @new_review.user = current_user
-
     if @new_movie.save
       render json: {id: @new_movie.id}
-
-      @new_review.save
-
-    else
-      # render json: @new_movie.errors
-      flash[:alert] = "Movie not found"
     end
   end
 end

@@ -24,18 +24,28 @@ const MovieShow = (props) => {
       </div>
 
       <div>
-        <form>
+        <form onSubmit={props.reviewSubmit}>
           <hr width="100%"/>
           <h3>Rate this movie</h3>
+
+          <p>Enjoyment rating:</p>
+          <p>
+            <input type="radio" name="user-rating" value={1} onClick={props.changeRating}/>&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="user-rating" value={2} onClick={props.changeRating}/>&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="user-rating" value={3} onClick={props.changeRating}/>&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="user-rating" value={4} onClick={props.changeRating}/>&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="user-rating" value={5} onClick={props.changeRating}/>
+          </p>
 
           <p>Review:</p>
           <textarea
             name="body"
             id="body"
             type="text"
+            onChange={props.changeReview}
           />
 
-          <input className="button" type="submit" value="Submit" />
+          <input className="button" type="submit" value="Submit"/>
         </form>
       </div>
     </div>

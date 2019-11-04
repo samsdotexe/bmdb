@@ -2,49 +2,56 @@ import React, { useState, useEffect } from "react"
 
 const MovieFormContainer = (props) => {
   const [movie, setMovie] = useState("")
-  const [rating, setRating] = useState(null)
-  const [review, setReview] = useState("")
+  const [error, setError] = useState("")
 
   const changeForm = (event) => {
     event.preventDefault()
-    setMovie({
-      ...movie, [event.currentTarget.id]: event.currentTarget.value
-    })
+    setMovie(event.currentTarget.value)
+    console.log(movie)
   }
 
-  const changeRating = (event) => {
-    setRating(event.currentTarget.value)
-  }
-
-  const changeReview = (event) => {
-    event.preventDefault()
-    setReview({
-      ...review, [event.currentTarget.id]: event.currentTarget.value
-    })
-  }
+  // const changeRating = (event) => {
+  //   setRating(event.currentTarget.value)
+  // }
+  //
+  // const changeReview = (event) => {
+  //   event.preventDefault()
+  //   setReview({
+  //     ...review, [event.currentTarget.id]: event.currentTarget.value
+  //   })
+  // }
 
   const formSubmit = () => {
     event.preventDefault()
+    setError("")
 
-    const movieData = { movie, rating, review }
-
-    fetch("/api/v1/movies.json", {
-      credentials: "same-origin",
-      method: "POST",
-      body: JSON.stringify(movieData),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      }
-    })
-    .then(response => {
-      console.log(response)
-    })
-    // window.location = "/"
+    if (movie.length) {
+      fetch("/api/v1/movies.json", {
+        credentials: "same-origin",
+        method: "POST",
+        body: JSON.stringify(movie),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }
+      })
+      .then(response => {
+        if (response.status == 500) {
+          setError("We couldn't find that movie :(")
+        } else {
+          window.location = "/"
+          // console.log(response)
+        }
+      })
+    } else {
+      setError("Title field can't be blank")
+    }
   }
 
   return (
     <div className="panel">
+      <div className="error">{error}</div>
+
       <form onSubmit={formSubmit}>
         <h3>Submit Movie</h3>
         <hr width="100%"/>
@@ -55,23 +62,6 @@ const MovieFormContainer = (props) => {
           id="body"
           type="text"
           onChange={changeForm}
-        />
-
-        <p>Enjoyment rating:</p>
-        <p>
-          <input type="radio" name="user-rating" value={1} onClick={changeRating}/>&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="user-rating" value={2} onClick={changeRating}/>&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="user-rating" value={3} onClick={changeRating}/>&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="user-rating" value={4} onClick={changeRating}/>&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="user-rating" value={5} onClick={changeRating}/>
-        </p>
-
-        <p>Review:</p>
-        <textarea
-          name="body"
-          id="body"
-          type="text"
-          onChange={changeReview}
         />
 
         <input className="button" type="submit" value="Submit" />
