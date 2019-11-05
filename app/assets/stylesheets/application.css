@@ -44,7 +44,7 @@ label {
   border-style: solid;
   border-color: white;
   color: #8A0808;
-  /* border-radius: 3px; */
+  border-radius: 3px;
   vertical-align: middle;
 }
 
