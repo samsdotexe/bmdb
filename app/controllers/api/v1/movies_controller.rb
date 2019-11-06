@@ -40,7 +40,7 @@ class Api::V1::MoviesController < ApplicationController
     })
 
     if @new_movie.save
-      render json: {id: @new_movie.id}
+      # render json: {id: @new_movie.id}
     end
   end
 end

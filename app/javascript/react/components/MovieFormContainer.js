@@ -10,17 +10,6 @@ const MovieFormContainer = (props) => {
     console.log(movie)
   }
 
-  // const changeRating = (event) => {
-  //   setRating(event.currentTarget.value)
-  // }
-  //
-  // const changeReview = (event) => {
-  //   event.preventDefault()
-  //   setReview({
-  //     ...review, [event.currentTarget.id]: event.currentTarget.value
-  //   })
-  // }
-
   const formSubmit = () => {
     event.preventDefault()
     setError("")
@@ -37,7 +26,7 @@ const MovieFormContainer = (props) => {
       })
       .then(response => {
         if (response.status == 500) {
-          setError("We couldn't find that movie :(")
+          setError("Something went wrong")
         } else {
           window.location = "/"
           // console.log(response)
