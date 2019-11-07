@@ -7,7 +7,6 @@ class Api::V1::ReviewsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @rating = params["rating"]
     @movie = params["movie_id"]
     @user = current_user.id

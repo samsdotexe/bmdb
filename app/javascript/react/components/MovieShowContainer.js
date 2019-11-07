@@ -7,7 +7,7 @@ const MovieShowContainer = (props) => {
   const [movie, setMovie] = useState([])
   const [rating, setRating] = useState(null)
   const [review, setReview] = useState("")
-  // const [error, setError] = useState("")
+  const [error, setError] = useState("")
   const [reviews, setReviews] = useState([])
 
 
@@ -26,6 +26,7 @@ const MovieShowContainer = (props) => {
 
   const reviewSubmit = () => {
     event.preventDefault()
+    setError("")
 
     const reviewData = { rating, review }
 
@@ -39,7 +40,11 @@ const MovieShowContainer = (props) => {
       }
     })
     .then(response => {
-      console.log(response)
+      if (response.status == 500) {
+        setError("Something went wrong")
+      } else {
+        window.location = `/movies/${movieId}`
+      }
     })
   }
 
@@ -57,7 +62,6 @@ const MovieShowContainer = (props) => {
     .then(response => response.json())
     .then(fetchedMovie => {
       setMovie(fetchedMovie)
-      // setReviews(fetchedMovie.reviews)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
@@ -69,6 +73,15 @@ const MovieShowContainer = (props) => {
       setReviews(body)
     })
   }, [])
+
+  var reviewsContainer = null
+
+  if (reviews.length) {
+    reviewsContainer =
+    <ReviewIndexContainer
+      reviews={reviews}
+    />
+  }
 
   return (
     <div className="show-panel">
@@ -88,10 +101,9 @@ const MovieShowContainer = (props) => {
         changeRating={changeRating}
         changeReview={changeReview}
         reviewSubmit={reviewSubmit}
+        error={error}
       />
-      <ReviewIndexContainer
-        reviews={reviews}
-      />
+      {reviewsContainer}
     </div>
   )
 }

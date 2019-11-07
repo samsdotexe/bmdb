@@ -26,6 +26,7 @@ const MovieShow = (props) => {
       <div>
         <form onSubmit={props.reviewSubmit}>
           <hr width="100%"/>
+          <div className="error">{props.error}</div>
           <h3>Rate this movie</h3>
 
           <p>Enjoyment rating:</p>

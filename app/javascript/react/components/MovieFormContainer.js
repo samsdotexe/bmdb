@@ -26,10 +26,9 @@ const MovieFormContainer = (props) => {
       })
       .then(response => {
         if (response.status == 500) {
-          setError("Something went wrong")
+          setError("Movie not found")
         } else {
           window.location = "/"
-          // console.log(response)
         }
       })
     } else {
