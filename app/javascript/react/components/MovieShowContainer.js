@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react"
 
 import MovieShow from "./MovieShow"
+import ReviewIndexContainer from "./ReviewIndexContainer"
 
 const MovieShowContainer = (props) => {
   const [movie, setMovie] = useState([])
   const [rating, setRating] = useState(null)
   const [review, setReview] = useState("")
+  const [error, setError] = useState("")
+  const [reviews, setReviews] = useState([])
+
 
   const movieId = props.match.params.id
   const fetchMovie = `/api/v1/movies/${movieId}`
@@ -22,18 +26,25 @@ const MovieShowContainer = (props) => {
 
   const reviewSubmit = () => {
     event.preventDefault()
+    setError("")
 
-    fetch("/api/v1/reviews.json", {
+    const reviewData = { rating, review }
+
+    fetch(`${fetchMovie}/reviews.json`, {
       credentials: "same-origin",
       method: "POST",
-      body: JSON.stringify(rating),
+      body: JSON.stringify(reviewData),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       }
     })
     .then(response => {
-      console.log(response)
+      if (response.status == 500) {
+        setError("Something went wrong")
+      } else {
+        window.location = `/movies/${movieId}`
+      }
     })
   }
 
@@ -55,6 +66,23 @@ const MovieShowContainer = (props) => {
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
 
+  useEffect(() => {
+    fetch(`/api/v1/movies/${movieId}/reviews`)
+    .then(response => response.json())
+    .then(body => {
+      setReviews(body)
+    })
+  }, [])
+
+  var reviewsContainer = null
+
+  if (reviews.length) {
+    reviewsContainer =
+    <ReviewIndexContainer
+      reviews={reviews}
+    />
+  }
+
   return (
     <div className="show-panel">
       <MovieShow
@@ -73,7 +101,9 @@ const MovieShowContainer = (props) => {
         changeRating={changeRating}
         changeReview={changeReview}
         reviewSubmit={reviewSubmit}
+        error={error}
       />
+      {reviewsContainer}
     </div>
   )
 }
