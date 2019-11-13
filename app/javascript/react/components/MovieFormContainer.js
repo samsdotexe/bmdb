@@ -7,7 +7,6 @@ const MovieFormContainer = (props) => {
   const changeForm = (event) => {
     event.preventDefault()
     setMovie(event.currentTarget.value)
-    console.log(movie)
   }
 
   const formSubmit = () => {

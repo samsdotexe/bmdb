@@ -1,27 +1,25 @@
 import React, { useState, useEffect } from "react"
 
 import MovieShow from "./MovieShow"
+import MovieShowReviewForm from "./MovieShowReviewForm"
 import ReviewIndexContainer from "./ReviewIndexContainer"
 
 const MovieShowContainer = (props) => {
   const [movie, setMovie] = useState([])
+  const [reviews, setReviews] = useState([])
   const [rating, setRating] = useState(null)
   const [review, setReview] = useState("")
   const [error, setError] = useState("")
-  const [reviews, setReviews] = useState([])
-
 
   const movieId = props.match.params.id
   const fetchMovie = `/api/v1/movies/${movieId}`
 
   const changeRating = (event) => {
     setRating(event.currentTarget.value)
-    console.log(rating)
   }
 
   const changeReview = (event) => {
     setReview(event.currentTarget.value)
-    console.log(review)
   }
 
   const reviewSubmit = () => {
@@ -30,22 +28,26 @@ const MovieShowContainer = (props) => {
 
     const reviewData = { rating, review }
 
-    fetch(`${fetchMovie}/reviews.json`, {
-      credentials: "same-origin",
-      method: "POST",
-      body: JSON.stringify(reviewData),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      }
-    })
-    .then(response => {
-      if (response.status == 500) {
-        setError("Something went wrong")
-      } else {
-        window.location = `/movies/${movieId}`
-      }
-    })
+    if (rating) {
+      fetch(`${fetchMovie}/reviews.json`, {
+        credentials: "same-origin",
+        method: "POST",
+        body: JSON.stringify(reviewData),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }
+      })
+      .then(response => {
+        if (response.status == 500) {
+          setError("Something went wrong")
+        } else {
+          window.location = `/movies/${movieId}`
+        }
+      })
+    } else {
+      setError("Rating can't be blank")
+    }
   }
 
   useEffect(() => {
@@ -75,7 +77,6 @@ const MovieShowContainer = (props) => {
   }, [])
 
   var reviewsContainer = null
-
   if (reviews.length) {
     reviewsContainer =
     <ReviewIndexContainer
@@ -98,6 +99,12 @@ const MovieShowContainer = (props) => {
         user_rating={movie.user_rating}
         average_rating={movie.average_rating}
         reviews={movie.reviews}
+        changeRating={changeRating}
+        changeReview={changeReview}
+        reviewSubmit={reviewSubmit}
+        error={error}
+      />
+      <MovieShowReviewForm
         changeRating={changeRating}
         changeReview={changeReview}
         reviewSubmit={reviewSubmit}
