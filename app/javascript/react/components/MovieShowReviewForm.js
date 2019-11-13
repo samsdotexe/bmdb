@@ -1,6 +1,20 @@
 import React from "react"
 
+import MovieShowRadio from "./MovieShowRadio"
+
 const MovieShowReviewForm = (props) => {
+  const oneThroughTen = [...Array(10).keys()].map(index => ++index)
+
+  const radioTiles = oneThroughTen.map(num => {
+    return (
+      <MovieShowRadio
+        key={num}
+        value={num}
+        changeRating={props.changeRating}
+      />
+    )
+  })
+
   return (
     <div>
       <form onSubmit={props.reviewSubmit}>
@@ -9,18 +23,7 @@ const MovieShowReviewForm = (props) => {
         <h3>Rate this movie</h3>
 
         <p>Enjoyment rating:</p>
-        <p>
-          <input type="radio" name="user-rating" value={1} onClick={props.changeRating}/>&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="user-rating" value={2} onClick={props.changeRating}/>&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="user-rating" value={3} onClick={props.changeRating}/>&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="user-rating" value={4} onClick={props.changeRating}/>&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="user-rating" value={5} onClick={props.changeRating}/>&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="user-rating" value={6} onClick={props.changeRating}/>&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="user-rating" value={7} onClick={props.changeRating}/>&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="user-rating" value={8} onClick={props.changeRating}/>&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="user-rating" value={9} onClick={props.changeRating}/>&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="user-rating" value={10} onClick={props.changeRating}/>
-        </p>
+        {radioTiles}
 
         <p>Review:</p>
         <textarea

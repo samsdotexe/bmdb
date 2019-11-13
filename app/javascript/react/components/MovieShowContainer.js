@@ -16,10 +16,12 @@ const MovieShowContainer = (props) => {
 
   const changeRating = (event) => {
     setRating(event.currentTarget.value)
+    console.log(rating)
   }
 
   const changeReview = (event) => {
     setReview(event.currentTarget.value)
+    console.log(review)
   }
 
   const reviewSubmit = () => {
