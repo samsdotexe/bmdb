@@ -7,21 +7,16 @@ class Api::V1::ReviewsController < ApplicationController
   end
 
   def create
-    @rating = params["rating"]
-    @movie = params["movie_id"]
     @user = current_user.id
-    @review
-
-    if params["review"].length
-      @review = params["review"]
-    end
+    @movie = params["movie_id"]
+    @rating = params["rating"]
+    @review = params["review"]
 
     @new_review = Review.create({
-      movie_id: @movie,
       user_id: @user,
+      movie_id: @movie,
       rating: @rating,
       review: @review
-      }
-    )
+    })
   end
 end

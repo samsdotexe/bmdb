@@ -18,8 +18,9 @@ class Api::V1::MoviesController < ApplicationController
 
   def create
     @movie = params["_json"]
+    @api_key = "c8c5e403"
 
-    url = URI.parse("http://www.omdbapi.com/?apikey=c8c5e403&t=#{@movie}")
+    url = URI.parse("http://www.omdbapi.com/?apikey=#{@api_key}&t=#{@movie}")
     req = Net::HTTP::Get.new(url.to_s)
     res = Net::HTTP.start(url.host, url.port) {|http|
       http.request(req)
@@ -40,7 +41,7 @@ class Api::V1::MoviesController < ApplicationController
     })
 
     if @new_movie.save
-      # render json: {id: @new_movie.id}
+      render json: @new_movie
     end
   end
 end

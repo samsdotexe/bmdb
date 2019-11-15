@@ -35,15 +35,15 @@ const MoviesIndexContainer = (props) => {
 
   return (
     <div className="index-panel">
-        <center className="show-panel">
-          <h1>The Bad Movie Database</h1>
-          <p>A place for cataloging and ranking bad movies.</p>
-          <a href="/movies/new">Submit a Movie</a>
-        </center>
+      <center className="show-panel">
+        <h1>The Bad Movie Database</h1>
+        <p>A place for cataloging and ranking bad movies.</p>
+        <a href="/movies/new">Submit a Movie</a>
+      </center>
 
-        <center className="grid-x">
-          {movieTiles}
-        </center>
+      <center className="grid-x">
+        {movieTiles}
+      </center>
     </div>
   )
 }

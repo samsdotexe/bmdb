@@ -7,7 +7,6 @@ const MovieFormContainer = (props) => {
   const changeForm = (event) => {
     event.preventDefault()
     setMovie(event.currentTarget.value)
-    console.log(movie)
   }
 
   const formSubmit = () => {
@@ -25,7 +24,7 @@ const MovieFormContainer = (props) => {
         }
       })
       .then(response => {
-        if (response.status == 500) {
+        if (response.status == 204) {
           setError("Movie not found")
         } else {
           window.location = "/"

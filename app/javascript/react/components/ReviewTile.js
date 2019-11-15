@@ -5,7 +5,7 @@ const ReviewTile = (props) => {
     <div>
       <h4>
         <img src="https://imgur.com/Ccof2Ub.png" className="star"/>
-        &nbsp;{props.rating}
+        {props.rating}
       </h4>
       <p>{props.review}</p>
     </div>
