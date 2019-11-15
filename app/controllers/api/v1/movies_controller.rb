@@ -28,7 +28,7 @@ class Api::V1::MoviesController < ApplicationController
 
     response = JSON.parse(res.body)
 
-    @new_movie = Movie.create({
+    @new_movie = Movie.new({
       title: response["Title"],
       year: response["Year"],
       rated: response["Rated"],
@@ -39,5 +39,9 @@ class Api::V1::MoviesController < ApplicationController
       plot: response["Plot"],
       poster: response["Poster"],
     })
+
+    if @new_movie.save
+      render json: @new_movie
+    end
   end
 end

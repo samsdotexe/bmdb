@@ -23,7 +23,7 @@ const MovieShowReviewForm = (props) => {
         <h3>Rate this movie</h3>
 
         <p>Enjoyment rating:</p>
-        {radioTiles}
+        <p>{radioTiles}</p>
 
         <p>Review:</p>
         <textarea

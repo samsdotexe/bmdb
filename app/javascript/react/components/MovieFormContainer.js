@@ -24,11 +24,10 @@ const MovieFormContainer = (props) => {
         }
       })
       .then(response => {
-        if (response.status == 500) {
+        if (response.status == 204) {
           setError("Movie not found")
         } else {
-          // window.location = "/"
-          console.log(response)
+          window.location = "/"
         }
       })
     } else {

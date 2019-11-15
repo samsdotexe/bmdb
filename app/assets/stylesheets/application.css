@@ -78,6 +78,10 @@ label {
   transition: 0.2s;
 }
 
+.button {
+  margin-top: 10px;
+}
+
 .error {
   color: red;
 }
@@ -87,7 +91,6 @@ label {
 .index-panel {
   margin-left: 10%;
   margin-right: 10%;
-  margin-top: 2%;
 }
 
 .index-movie-poster {
@@ -126,6 +129,15 @@ label {
 .star {
   width: 20px;
   margin-right: 10px;
+}
+
+.radio-button {
+  margin-right: 10px;
+}
+
+.radio-value {
+  margin-right: 10px;
+  color: #CCCCCC;
 }
 
 .line {
